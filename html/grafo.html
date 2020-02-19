@@ -1,0 +1,158 @@
+<!DOCTYPE html>
+<!--
+To change this license header, choose License Headers in Project Properties.
+To change this template file, choose Tools | Templates
+and open the template in the editor.
+-->
+<html>
+	<head>
+		<title>TODO supply a title</title>
+		<meta charset="UTF-8">
+		<meta name="viewport" content="width=device-width, initial-scale=1.0">
+		<script src="https://cdnjs.cloudflare.com/ajax/libs/lodash.js/4.17.2/lodash.min.js"></script>
+		<script src="https://cdnjs.cloudflare.com/ajax/libs/vis/4.17.0/vis.js"></script>
+		<link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/vis/4.17.0/vis.css" />
+		<script src="https://cdnjs.cloudflare.com/ajax/libs/jquery/2.2.4/jquery.js"></script>
+		
+		  <style type="text/css">
+    #mynetwork {
+      width: 100%;
+      height: 600px;
+      border: 1px solid lightgray;
+    }
+	body{
+		height: 100%
+	}	
+  </style>
+  
+  
+<script src="grafo_color.js"></script>
+ 
+	</head>
+	<body>
+		<div id="drop_zone">Drop files here</div>
+		<div id="mynetwork"></div>
+		<output id="list"></output>
+
+		<span ></span>
+
+<script>
+	
+  function handleFileSelect(jsonObject) {
+		var span = document.createElement('span');
+		var filestr=grafo.leda;
+		var file_line=filestr.split("\n");
+		var i=0;
+		var nodesize=parseInt(file_line[4])
+		var n=[];
+		var arc=[]
+		var node_leda_id=1;
+		for(i=0; i < nodesize; i++){
+			var name=file_line[i+5].replace("|{","").replace("}|","" );
+			var g=""
+			if(name.indexOf("I")!=-1){
+				g="auth"
+			}
+			if(name.indexOf("G")!=-1){
+				g="pr"
+			}
+			if(name.indexOf("E")!=-1){
+				g="arc"
+			}
+			name=name.replace("G","").replace("E","").replace("I","")
+			n.push({id: node_leda_id, label: name, group:g});
+			node_leda_id++;
+		}
+
+		var arcsize=parseInt(file_line[nodesize+4+1])
+		alert(nodesize+4+1)
+		var base=nodesize+4+2;
+		var arc_id=1;
+						debugger
+		for(i=0; i <arcsize; i++){
+			var infoarch=file_line[base+i].split(" ");
+
+			arc.push({from: infoarch[0], to: infoarch[1], color: 'black'}),
+			arc_id++;		
+		}
+
+		debugger;
+		span.innerHTML = document.getElementById('list').insertBefore(span, null);
+		buildGraph(n,arc);
+    document.getElementById('list').innerHTML = '<ul>' + output.join('') + '</ul>';
+  }
+
+
+function buildGraph(node,arc){
+	var nodes = new vis.DataSet(node);
+
+	// create an array with edges
+	var edges = new vis.DataSet(arc);
+
+  // create a network
+  var container = document.getElementById('mynetwork');
+  var data = {
+    nodes: nodes,
+    edges: edges
+  };
+
+	var options = {
+    nodes: {
+
+      font: {
+        face: 'Tahoma',
+		size:27,
+      }
+    },
+    edges: {
+      width: 0.15,
+      smooth: {
+        type: 'continuous'
+      }
+    },
+    interaction: {
+      tooltipDelay: 200,
+      hideEdgesOnDrag: true,
+ 
+          navigationButtons: true,
+          keyboard: true
+        },
+    physics: {
+      stabilization: false,
+      barnesHut: {
+        gravitationalConstant: -10000,
+        springConstant: 0.002,
+        springLength: 150
+      }
+    },
+	groups: {
+			auth: {
+	
+				color: 'yellow' // orange
+			},
+			pr:{
+
+				color: "green" // blue
+			},
+			arc:{
+
+				color: "red" // blue
+			}
+		}
+		
+  };
+ 	  
+  var network = new vis.Network(container, data, options);
+}
+ handleFileSelect();
+  
+//$.getJSON( "grafo_color.json", function( data ) {
+//  handleFileSelect(data);
+//});
+         
+
+     
+        </script>
+
+	</body>
+</html>
