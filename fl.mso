@@ -4,35 +4,28 @@ adjA(x,y,G,E) := agent(x,G,E) and agent(y, G, E) and Ex e1 Ex g Ex e2 (e1 in E a
 
 adjG(x,g,G,E) := agent(x,G,E) and g in G and Ex e (e in E and adj(x,e) and adj(e,g))
 
-matching(i,C,P,M,G,E) := All x ( ~(x in P and (x in C or x=i)) or Ex e (e in M and adj(x,e))) and
-
-											   All e (e notin M or ( All a All g ( ~(adj(a,e) and adj(g,e) and ~(g=a)) or
-																														 ( All e1 (~(adj(a,e1) and e1 in M) or e1 = e)
-																															  and
-																															 All e2 (~(adj(g,e2) and e2 in M) or e2 = e)
-																													   )
-													                      					)
-																							)
-															)
-
-									        and All e (e notin M or e in E)
+matching(i,C,P,M,G,E) := All x ( ~(x in P and (x in C or x=i)) or Ex e (e in M and adj(x,e))) 
+			 and
+			 All e (e notin M or ( All a All g ( ~(adj(a,e) and adj(g,e) and ~(g=a)) or
+								( All e1 (~(adj(a,e1) and e1 in M) or e1 = e)   																												  and
+								 All e2 (~(adj(g,e2) and e2 in M) or e2 = e)
+	           						 )
+					                   )
+			   		     )
+			       )
+		        and All e (e notin M or e in E)
 
 
-conn(i,C,M,P,G,E) := All x (
-  											   (~(x in C and Ex y Ex e Ex g (y in P and e in M and g in G and adj(y,e) and adj(e,g) and adjG(x,g,G,E)))
-                              or (x in P and Ex e1 (e1 in M and adj(x,e1)))
-                           )
-										    )
+conn(i,C,M,P,G,E) := All x ( (~(x in C and Ex y Ex e Ex g (y in P and e in M and g in G and adj(y,e) and adj(e,g) and adjG(x,g,G,E)))
+                                  or (x in P and Ex e1 (e1 in M and adj(x,e1)))
+                              )
+			   )
                         and
-                  All x (x notin P or (x in C or x=i))
+                    All x (x notin P or (x in C or x=i))
 
 output(C,I,G,E) := Ex M Ex P Ex i ( i in I and i in P and i notin C
-                                            and
-                                             All x (x notin C or agent(x,G,E))
-                                            and
-                                             Ex e (e in M and adj(i,e))
-                                            and
- 																		  			   conn(i,C,M,P,G,E)
-                                            and
-																			  		  matching(i,C,P,M,G,E)
-							 								     )
+                                     and  All x (x notin C or agent(x,G,E))
+                                     and  Ex e (e in M and adj(i,e))
+                                     and  conn(i,C,M,P,G,E)
+                                     and  matching(i,C,P,M,G,E)
+			           )
