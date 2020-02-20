@@ -1,7 +1,7 @@
 # ag-shapley-mso
 This is an implementation of our algorithms for computing the Shapley value and the Banzhaf value in polynomial time for the resource allocation games over bounded treewidth graphs described in:
 
-Greco, Lupia, Scarcello: Coalitional games induced by matching problems: Complexity and islands of tractability for the Shapley value. Artif. Intell. 278 (2020)
+**Greco, Lupia, Scarcello: Coalitional games induced by matching problems: Complexity and islands of tractability for the Shapley value. Artif. Intell. 278 (2020)**
 
 This code is for research only purposes. If you decide to use it, please cite our work:
 ```
@@ -21,17 +21,17 @@ This code is for research only purposes. If you decide to use it, please cite ou
   bibsource = {dblp computer science bibliography, https://dblp.org}
 }
 ```
-##INSTALLATION
+## INSTALLATION
 
 git clone https://github.com/fras3c/ag-shapley-mso.git
 docker build -t ag-shapley-mso .
 
-EXECUTION
+## EXECUTION
 ```
 docker run -i -t ag-shapley-mso:latest /bin/bash
 chmod +x ag-sv-mso.py
 ```
-USAGE
+## USAGE
 
 ```./ag-sv-mso.py -b outdir agents goods expected_goods``` # builds an allocation game [INPUT] outdir and CSV files; [OUTPUT] an allocation game (LEDA format)
 ```./ag-sv-mso.py -s instance_name``` # builds and solves a MSO counting problem by taking in INPUT the resource allocation graph built in the previous step (to do that we use Sequoia MSO Solver)
