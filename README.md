@@ -24,6 +24,7 @@ This code is for research only purposes. If you decide to use it, please cite ou
 ## Installation
 ```
 git clone https://github.com/fras3c/ag-shapley-mso.git
+unzip sequoia-core.zip
 docker build -t ag-shapley-mso .
 ```
 ## Execution
