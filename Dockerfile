@@ -26,7 +26,7 @@ cmake \
 libboost-all-dev && apt-get clean && rm -rf /var/lib/apt/lists/*
 
 ADD ./sequoia-core /home/sequoia
-ADD ./mso-tool.py /home/
+ADD ./ag-sv-mso.py /home/
 ADD ./fl.mso /home/
 ADD ./commons-io-2.5.jar /home/
 ADD ./examples /home/examples
