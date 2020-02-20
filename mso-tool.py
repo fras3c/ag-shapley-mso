@@ -55,8 +55,8 @@ def BuildAllocationGame(values):
     res = values[1]
     val = values[2]
     pub = values[3]
-    try:        
-	ans = check_output(['java', '-cp', 'ShapleyMSO.jar:commons-io-2.5.jar', "testparser.LedaNewParser", outdir, res, val, pub])
+    try:
+        ans = check_output(['java', '-cp', 'ShapleyMSO.jar:commons-io-2.5.jar', "testparser.LedaNewParser", outdir, res, val, pub])
         #java -cp ShapleyMSO.jar:commons-io-2.5.jar testparser.LedaNewParser "/home/sequoia/out" "roma30res.csv" "roma30val.csv" "roma30expectedpub.csv"
     except subprocess.CalledProcessError as e:
         raise RuntimeError("command '{}' return with error (code {}): {}".format(e.cmd, e.returncode, e.output))
@@ -165,10 +165,8 @@ def SolveMSO(instance):
                         tempo = "\nExecution time: " + str(t)
                         f.write(tempo)
                         f.close()
+                        print("Found solution!")
                         #print(output[output.find("Solution"):])
- 	
-			print("Found solution!")
-                    print()
 
 if __name__ == '__main__':
 
@@ -179,4 +177,3 @@ if __name__ == '__main__':
     my_parser.add_argument('-a', nargs='+', action=ActionRunToComplete)
 
     args = my_parser.parse_args()
-

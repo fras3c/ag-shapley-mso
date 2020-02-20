@@ -9,31 +9,22 @@ RUN sed -i '/deb http:\/\/deb.debian.org\/debian jessie-updates main/d' /etc/apt
 RUN apt-get -o Acquire::Check-Valid-Until=false update
 # update apt repositories
 
-# install add-apt-repository tool
-RUN apt-get -y install software-properties-common
-#RUN apt-get install python-software-properties -y
-RUN apt-get install -y -t jessie-backports openjdk-8-jdk
-# install wget for downloading files
-RUN apt-get install -y wget
+RUN apt-get install --no-install-recommends -y software-properties-common
+RUN apt-get install --no-install-recommends -y -t jessie-backports openjdk-8-jdk
 
-#add-apt-repository ppa:ubuntu-toolchain-r/test && apt-get update && apt-get install -y \
-RUN apt-get install -y build-essential
-RUN apt-get install -y vim
-RUN apt-get install -y nano
-RUN apt-get install -y git
-RUN apt-get install -y python3
-RUN apt-get install -y make
-RUN apt-get install -y python3-dev
-RUN apt-get install -y python3-pip
-RUN apt-get install -y g++-4.9
-  #  libtbb-dev \
-  #  clang-format-3.4 \
-  #  vim \
-RUN apt-get install -y pkg-config
-RUN apt-get install -y screen
-RUN apt-get install -y cmake
+RUN apt-get install --no-install-recommends -y build-essential \
+wget \
+vim \
+git \
+python3 \
+make \
+python3-dev \
+g++-4.9 \
+pkg-config \
+tmux \
+cmake \
+libboost-all-dev && apt-get clean && rm -rf /var/lib/apt/lists/*
 
-RUN apt-get install -y libboost-all-dev
 ADD ./sequoia-core /home/sequoia
 ADD ./mso-tool.py /home/
 ADD ./fl.mso /home/
@@ -43,7 +34,7 @@ ADD ./html /home/html
 ADD ./out /home/sequoia/out
 ADD ./ShapleyMSO.jar /home/
 
-RUN ls -l /home/sequoia
 WORKDIR /home/sequoia
 RUN ./configure CPPFLAGS="--std=c++11"
 RUN make
+WORKDIR /home/
