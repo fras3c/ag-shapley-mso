@@ -7,7 +7,8 @@ adjG(x,g,G,E) := agent(x,G,E) and g in G and Ex e (e in E and adj(x,e) and adj(e
 matching(i,C,P,M,G,E) := All x ( ~(x in P and (x in C or x=i)) or Ex e (e in M and adj(x,e))) 
 			 and
 			 All e (e notin M or ( All a All g ( ~(adj(a,e) and adj(g,e) and ~(g=a)) or
-								( All e1 (~(adj(a,e1) and e1 in M) or e1 = e)   																												  and
+								( All e1 (~(adj(a,e1) and e1 in M) or e1 = e)
+                                                                  and
 								 All e2 (~(adj(g,e2) and e2 in M) or e2 = e)
 	           						 )
 					                   )
