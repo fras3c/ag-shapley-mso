@@ -1,0 +1,14 @@
+INSTALLATION
+
+git clone https://github.com/fras3c/ag-shapley-mso.git
+docker build -t ag-shapley-mso .
+
+
+EXECUTION
+
+docker run -i -t ag-shapley-mso:latest /bin/bash
+
+
+chmod +x mso-tool.py
+./mso-tool.py -a "/home/sequoia/out" "examples/roma30res.csv" "examples/roma30val.csv" "examples/roma30expectedpub.csv" 30
+
