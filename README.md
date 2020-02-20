@@ -40,7 +40,8 @@ chmod +x ag-sv-mso.py
 
 All of those steps can be performed together using the switch "-a" as follows:
 
-```./ag-sv-mso.py -a outdir agents goods expected_goods instance_name
+```
+./ag-sv-mso.py -a outdir agents goods expected_goods instance_name
 ./ag-sv-mso.py -a "/home/sequoia/out" "examples/roma30res.csv" "examples/roma30val.csv" "examples/roma30expectedpub.csv" 30
 ```
 You will find more instances in the "example" folder.
