@@ -21,18 +21,17 @@ This code is for research only purposes. If you decide to use it, please cite ou
   bibsource = {dblp computer science bibliography, https://dblp.org}
 }
 ```
-## INSTALLATION
-
+## Installation
+```
 git clone https://github.com/fras3c/ag-shapley-mso.git
 docker build -t ag-shapley-mso .
-
-## EXECUTION
+```
+## Execution
 ```
 docker run -i -t ag-shapley-mso:latest /bin/bash
 chmod +x ag-sv-mso.py
 ```
-## USAGE
-
+## Usage
 ```./ag-sv-mso.py -b outdir agents goods expected_goods``` # builds an allocation game [INPUT] outdir and CSV files; [OUTPUT] an allocation game (LEDA format)
 ```./ag-sv-mso.py -s instance_name``` # builds and solves a MSO counting problem by taking in INPUT the resource allocation graph built in the previous step (to do that we use Sequoia MSO Solver)
 ```./ag-sv-mso.py -c outdir instance_name``` # computes the Shapley Value of the Resource allocation game by exploiting the solutions (histograms) computed in previous step.
