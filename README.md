@@ -37,7 +37,7 @@ chmod +x ag-sv-mso.py
 
 ```./ag-sv-mso.py -s instance_name``` # builds and solves a MSO counting problem by taking in INPUT the resource allocation graph built in the previous step (to do that we use Sequoia MSO Solver)
 
-```./ag-sv-mso.py -c outdir instance_name``` # computes the Shapley Value of the Resource allocation game by exploiting the solutions (histograms) computed in previous step.
+```./ag-sv-mso.py -c outdir instance_name``` # computes the Shapley Value of the Resource allocation game by exploiting the solutions (histograms) computed in the previous step.
 
 All of those steps can be performed together using the switch "-a" as follows:
 
