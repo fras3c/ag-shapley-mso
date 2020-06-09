@@ -18,8 +18,6 @@ class ActionRunToComplete(argparse.Action):
         SolveMSO(values[-1])
         ComputeShapleyValues([values[0], values[-1]])
 
-        """ print('Here I am, setting the ' \
-             'values %r for the %r option...' % (values, option_string))  """
         setattr(namespace, self.dest, values)
 
 class ActionBuildAllocation(argparse.Action):
@@ -27,8 +25,6 @@ class ActionBuildAllocation(argparse.Action):
     def __call__(self, parser, namespace, values, option_string=None):
        # print(values)
         BuildAllocationGame(values)
-        """ print('Here I am, setting the ' \
-             'values %r for the %r option...' % (values, option_string))  """
         setattr(namespace, self.dest, values)
 
 class ActionSolveMSO(argparse.Action):
@@ -36,16 +32,12 @@ class ActionSolveMSO(argparse.Action):
     def __call__(self, parser, namespace, values, option_string=None):
        # print(values)
         SolveMSO(values[0])
-        """ print('Here I am, setting the ' \
-             'values %r for the %r option...' % (values, option_string))  """
         setattr(namespace, self.dest, values)
 
 class ActionComputeSV(argparse.Action):
 
     def __call__(self, parser, namespace, values, option_string=None):
         ComputeShapleyValues(values)
-        """ print('Here I am, setting the ' \
-             'values %r for the %r option...' % (values, option_string))  """
         setattr(namespace, self.dest, values)
 
 
@@ -88,24 +80,15 @@ def SolveMSO(instance):
 
     sequoia_home = os.path.expandvars("$SEQUOIA")
 
-    #print("Sequoia home: " + sequoia_home)
-
-    #workspace = "/home/francesco/istanzeAllocation/"+instance
     workspace = sequoia_home+"/out/"+instance
 
     out_dir = workspace+"/sequoia"
-
-    #print("out_dir: " + out_dir)
 
     os.system("""rm -rf """+out_dir)
 
     os.system("""mkdir """+out_dir)
 
     os.chdir(sequoia_home+"""/src/""")
-
-    #os.system("""cd """+sequoia_home+"""/src/""")
-
-    #os.system(""" ./sequoia -T4 -f f3.mso -e CardCounting -g ../grafo_color_50_BNCMCR66M51H501M_70_I33.leda -c 1000000 """)
 
     for level in listdir(workspace+"/f1"):
         #print(level)
