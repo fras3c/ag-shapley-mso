@@ -1,4 +1,4 @@
-# ag-shapley-mso
+# RESOURCE ALLOCATION GAMES - SHAPLEY VALUE - MONADIC SECOND ORDER LOGIC
 This is an implementation of our algorithms for computing the Shapley value and the Banzhaf value in polynomial time for the resource allocation games over bounded treewidth graphs described in:
 
 **Greco, Lupia, Scarcello: Coalitional games induced by matching problems: Complexity and islands of tractability for the Shapley value. Artif. Intell. 278 (2020)**
